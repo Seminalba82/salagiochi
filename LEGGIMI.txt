@@ -1,0 +1,17 @@
+LA SALA GIOCHI DI ALBERTO SEMINERIO — sito indipendente
+
+Indirizzo: https://giochi.ilcaponequiz.win/
+
+FILE
+- index.html: la pagina (testo, titoli e dati per Google già dentro, senza JavaScript)
+- img/: le 4 foto dei giochi (800x450)
+- og-image.jpg: anteprima per social e WhatsApp (1200x630)
+- favicon.ico, favicon-48.png, apple-touch-icon.png, icons/: icone
+- sitemap.xml e robots.txt: per Google
+- vercel.json: impostazioni di Vercel
+
+COME AGGIUNGERE UN GIOCO
+1. Metti la foto del gioco nella cartella img (formato 16:9, ad esempio 800x450).
+2. In index.html copia un blocco "GIOCO" e cambia indirizzo, foto, nome e descrizione.
+3. Aggiungi il gioco anche nel blocco "application/ld+json" in alto (serve a Google) e in og-image se vuoi.
+Oppure mandami nome, indirizzo, descrizione e uno screenshot e lo faccio io.
