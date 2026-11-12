@@ -1,6 +1,6 @@
 LA SALA GIOCHI DI ALBERTO SEMINERIO — sito indipendente
 
-Indirizzo: https://giochi.ilcaponequiz.win/
+Indirizzo: https://salagiochi.ilcaponequiz.win/
 
 FILE
 - index.html: la pagina (testo, titoli e dati per Google già dentro, senza JavaScript)
