@@ -15,3 +15,9 @@ COME AGGIUNGERE UN GIOCO
 2. In index.html copia un blocco "GIOCO" e cambia indirizzo, foto, nome e descrizione.
 3. Aggiungi il gioco anche nel blocco "application/ld+json" in alto (serve a Google) e in og-image se vuoi.
 Oppure mandami nome, indirizzo, descrizione e uno screenshot e lo faccio io.
+
+
+AGGIORNAMENTO 14/11/2026
+- Aggiunto L'acqua di Giurgenti (acquadigiurgenti.ilcaponequiz.win) con il bollino NOVITÀ; il bollino è stato tolto da Munnizza.
+- Nuova immagine di anteprima social (og-sala.jpg) con tutti e 6 i giochi; il vecchio og-image.jpg è stato eliminato.
+- Copertine nuove: img/acqua-di-giurgenti.jpg, img/munnizza-v2.jpg, img/girgenti-roads-v2.jpg, img/il-capone-salsa-e-maionese-v2.jpg.
