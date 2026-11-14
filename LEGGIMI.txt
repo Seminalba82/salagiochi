@@ -21,3 +21,7 @@ AGGIORNAMENTO 14/11/2026
 - Aggiunto L'acqua di Giurgenti (acquadigiurgenti.ilcaponequiz.win) con il bollino NOVITÀ; il bollino è stato tolto da Munnizza.
 - Nuova immagine di anteprima social (og-sala.jpg) con tutti e 6 i giochi; il vecchio og-image.jpg è stato eliminato.
 - Copertine nuove: img/acqua-di-giurgenti.jpg, img/munnizza-v2.jpg, img/girgenti-roads-v2.jpg, img/il-capone-salsa-e-maionese-v2.jpg.
+
+
+--- 14/11 sera ---
+Copertine: ora schermate vere di gioco 800x450 (v3) come Formula Anziani e Super Capone. Il pupazzo e solo nella testata della pagina (img/capone-mascotte.webp). Vecchie immagini rimosse: carica la cartella img nuova.
