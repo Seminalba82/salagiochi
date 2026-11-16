@@ -25,3 +25,6 @@ AGGIORNAMENTO 14/11/2026
 
 --- 14/11 sera ---
 Copertine: ora schermate vere di gioco 800x450 (v3) come Formula Anziani e Super Capone. Il pupazzo e solo nella testata della pagina (img/capone-mascotte.webp). Vecchie immagini rimosse: carica la cartella img nuova.
+
+--- 16/11 ---
+Aggiunto SCIARRA (img/sciarra.jpg, NOVITA ora su Sciarra, 7 giochi, og-sala.jpg rifatta, sitemap aggiornata). Prima pubblica il gioco su sciarra.ilcaponequiz.win, poi carica questa sala.
