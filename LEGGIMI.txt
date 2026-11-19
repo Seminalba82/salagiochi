@@ -28,3 +28,6 @@ Copertine: ora schermate vere di gioco 800x450 (v3) come Formula Anziani e Super
 
 --- 16/11 ---
 Aggiunto SCIARRA (img/sciarra.jpg, NOVITA ora su Sciarra, 7 giochi, og-sala.jpg rifatta, sitemap aggiornata). Prima pubblica il gioco su sciarra.ilcaponequiz.win, poi carica questa sala.
+
+--- 19/11 ---
+Aggiunta stats.html: statistiche comuni (PIN come Super Capone). Si apre con salagiochi.ilcaponequiz.win/?stats (redirect automatico a /stats). Legge arcade/<gioco> del database super-capone. Per ora hanno dati: Super Capone, Formula Anziani, Acqua di Giurgenti.
