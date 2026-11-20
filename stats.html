@@ -46,11 +46,13 @@ async function run(){
   const t0=new Date().setHours(0,0,0,0);
   const res=await Promise.all(GAMES.map(async g=>{
     const r={g,ok:false,err:null,visits:0,plays:0,list:[]};
-    try{
-      const [s,p]=await Promise.all([db.ref(g.p+"/stats").once("value"),db.ref(g.p+"/plays").limitToLast(2000).once("value")]);
-      const sv=s.val()||{},pv=Object.values(p.val()||{});
-      r.visits=sv.visits||0;r.plays=sv.plays||pv.length;r.list=pv;r.ok=!!(s.exists()||p.exists());
-    }catch(e){r.err=String(e&&e.message||e)}
+    const rd=async(path,lim)=>{try{const q=lim?db.ref(path).limitToLast(lim):db.ref(path);return await q.once("value")}catch(e){return {err:e}}};
+    const [s,p]=await Promise.all([rd(g.p+"/stats"),rd(g.p+"/plays",2000)]);
+    if(s.err){r.err=String(s.err.message||s.err)}
+    else{
+      const sv=s.val()||{};r.visits=sv.visits||0;r.plays=sv.plays||0;r.ok=s.exists();
+      if(p.err){r.noList=true}else{const pv=Object.values(p.val()||{});r.list=pv;if(!r.plays)r.plays=pv.length;if(pv.length)r.ok=true}
+    }
     return r;
   }));
   const act=res.filter(r=>r.ok);
@@ -61,14 +63,14 @@ async function run(){
   const days=[];for(let i=13;i>=0;i--){const a=t0-i*DAY;days.push({d:new Date(a).toLocaleDateString("it-IT",{day:"2-digit",month:"2-digit"}),c:act.reduce((s,r)=>s+r.list.filter(x=>x.t>=a&&x.t<a+DAY).length,0)})}
   const mx=Math.max(1,...days.map(d=>d.c)),card=(b,s)=>`<div class="card"><b>${b}</b><span>${s}</span></div>`;
   const rows=res.map(r=>{
-    const st=r.err?`<span class="bad">errore regole</span>`:r.ok?`<span class="ok">✅ attivo</span>`:`<span class="no">⏳ nessun dato</span>`;
+    const st=r.err?`<span class="bad">errore regole</span>`:r.ok&&r.noList?`<span class="ok">✅ solo totali</span>`:r.ok?`<span class="ok">✅ attivo</span>`:`<span class="no">⏳ nessun dato</span>`;
     const nm=r.g.u?`<a href="${r.g.u}" target="_blank" rel="noopener">${esc(r.g.n)}</a>`:esc(r.g.n);
-    return `<tr class="${r.ok?"":"off"}"><td>${nm}</td><td class="n">${fmtN(r.visits)}</td><td class="n">${fmtN(r.plays)}</td><td class="n">${r.ok?today(r):"—"}</td><td class="n">${r.ok?week(r):"—"}</td><td class="n">${r.ok?names(r):"—"}</td><td>${r.ok?fmtD(last(r)):"—"}</td><td>${st}</td></tr>`}).join("");
-  const inattivi=res.filter(r=>!r.ok&&!r.err).map(r=>r.g.n),errori=res.filter(r=>r.err);
+    return `<tr class="${r.ok?"":"off"}"><td>${nm}</td><td class="n">${fmtN(r.visits)}</td><td class="n">${fmtN(r.plays)}</td><td class="n">${r.ok&&!r.noList?today(r):"—"}</td><td class="n">${r.ok&&!r.noList?week(r):"—"}</td><td class="n">${r.ok&&!r.noList?names(r):"—"}</td><td>${r.ok&&!r.noList?fmtD(last(r)):"—"}</td><td>${st}</td></tr>`}).join("");
+  const sololist=res.filter(r=>r.noList&&r.ok).map(r=>r.g.n),inattivi=res.filter(r=>!r.ok&&!r.err).map(r=>r.g.n),errori=res.filter(r=>r.err);
   $("body").innerHTML=`<div class="cards">${card(fmtN(tot(r=>r.visits)),"visite totali")}${card(fmtN(tot(r=>r.plays)),"partite iniziate")}${card(tot(today),"partite oggi")}${card(tot(week),"partite ultimi 7 giorni")}${card(act.length+" / "+GAMES.length,"giochi con statistiche")}</div>
   <h2>🎮 Giochi a confronto</h2><div class="sc"><table><tr><th>Gioco</th><th class="n">Visite</th><th class="n">Partite</th><th class="n">Oggi</th><th class="n">7 giorni</th><th class="n">Giocatori</th><th>Ultima partita</th><th>Stato</th></tr>${rows}</table></div>
   <h2>📈 Partite al giorno, tutti i giochi (14 giorni)</h2><div class="bars">${days.map(d=>`<div class="bar"><b>${d.c}</b><i style="height:${d.c/mx*100}%"></i><span>${d.d}</span></div>`).join("")}</div>
-  <div class="note">“Giocatori” e i dati per giorno si basano sulle ultime 2000 partite di ogni gioco; visite e partite totali sono i contatori completi.${inattivi.length?"<br><br>Senza dati: "+esc(inattivi.join(", "))+" (il gioco non conta ancora le visite, oppure nessuno l'ha ancora aperto).":""}${errori.length?"<br><br>Regole del database da controllare per: "+esc(errori.map(r=>r.g.n).join(", ")):""}</div>`;
+  <div class="note">“Giocatori” e i dati per giorno si basano sulle ultime 2000 partite di ogni gioco; visite e partite totali sono i contatori completi.${inattivi.length?"<br><br>Senza dati: "+esc(inattivi.join(", "))+" (il gioco non conta ancora le visite, oppure nessuno l'ha ancora aperto).":""}${sololist.length?"<br><br>Solo totali (nomi e giorni non leggibili dalle regole del database): "+esc(sololist.join(", ")):""}${errori.length?"<br><br>Regole del database da controllare per: "+esc(errori.map(r=>r.g.n).join(", ")):""}</div>`;
 }
 window.addEventListener("load",run);
 </script></body></html>

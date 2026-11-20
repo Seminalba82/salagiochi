@@ -31,3 +31,6 @@ Aggiunto SCIARRA (img/sciarra.jpg, NOVITA ora su Sciarra, 7 giochi, og-sala.jpg 
 
 --- 19/11 ---
 Aggiunta stats.html: statistiche comuni (PIN come Super Capone). Si apre con salagiochi.ilcaponequiz.win/?stats (redirect automatico a /stats). Legge arcade/<gioco> del database super-capone. Per ora hanno dati: Super Capone, Formula Anziani, Acqua di Giurgenti.
+
+--- 20/11 ---
+stats.html: ora legge i totali anche quando le regole non permettono di leggere le singole partite (Formula Anziani, Acqua di Giurgenti).
