@@ -27,6 +27,7 @@ AGGIORNAMENTO 14/11/2026
 Copertine: ora schermate vere di gioco 800x450 (v3) come Formula Anziani e Super Capone. Il pupazzo e solo nella testata della pagina (img/capone-mascotte.webp). Vecchie immagini rimosse: carica la cartella img nuova.
 
 --- 16/11 ---
+Aggiunto IL MIO CUCCIOLO (img/il-mio-cucciolo.jpg, NOVITA, riquadro WhatsApp "commissiona il tuo", statistiche). Prima pubblica le nuove regole Firebase e il gioco su ilmiocucciolo.ilcaponequiz.win, poi questa sala.
 Aggiunto SCIARRA (img/sciarra.jpg, NOVITA ora su Sciarra, 7 giochi, og-sala.jpg rifatta, sitemap aggiornata). Prima pubblica il gioco su sciarra.ilcaponequiz.win, poi carica questa sala.
 
 --- 19/11 ---
